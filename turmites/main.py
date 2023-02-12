@@ -4,12 +4,12 @@ import imageio
 from turmite import Turmite
 
 # 120080 Langton's ant
-
-turmite = Turmite(size=200, rule='181181121010', n_iterations=10000)
+# 021121181180 snowflake-ish
+# 181181121010 Fibonacci spiral
+turmite = Turmite(size=100, rule='181181110012081111', n_iterations=2000)
 steps = turmite.run()
 
-imgs = [Image.fromarray(np.array(img)) for img in steps]
-# duration is the number of milliseconds between frames; this is 40 frames per second
+normalized_steps = [list(map(lambda x: list(map(lambda y: y * 255, x)), img)) for img in steps]
+imgs = [Image.fromarray(np.array(img).astype(np.uint8)) for img in normalized_steps]
 
-imageio.mimsave('new.gif', imgs)
-imageio.mimsave('new1.gif', imgs[8342:])
+imageio.mimsave('turmite.gif', imgs[1500:])

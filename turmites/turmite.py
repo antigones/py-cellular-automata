@@ -1,10 +1,9 @@
-import numpy as np
 from copy import deepcopy
 
 
 class Turmite:
 
-    def __init__(self, size, rule, n_iterations=1000 ):
+    def __init__(self, size, rule, n_iterations=1000):
         """
                                 current-color = 0    current-color = 1
             current-state = 0              1,8,1                1,8,1
@@ -55,12 +54,9 @@ class Turmite:
 
     def parse_rule(self):
         
-        # 120080
-        # 120 080
-        # 181181121010
-        # 181 181 121 010
         parts = [self.rule[i:i+3] for i in range(0, len(self.rule), 3)]
         states_and_rules = [parts[i:i+2] for i in range(0, len(parts), 2)]
+        
         return states_and_rules
 
 
