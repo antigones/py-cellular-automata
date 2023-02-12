@@ -27,9 +27,9 @@ class CellularAutomaton:
         else:
             input = 2 ** (self.width // 2)
 
-        out_list = []
+        steps = []
         bin_format = '0' + str(max_len.bit_length()) + 'b'
-        out_list.append([int(x) for x in format(input, bin_format)])
+        steps.append([int(x) for x in format(input, bin_format)])
 
         for i in range(self.n_iterations):
             mask = 7 # 111
@@ -40,7 +40,7 @@ class CellularAutomaton:
                 k = o >> i
                 n += self.input_output[k] * (2 ** (i + 1)) # center pixel, so index is i+1
                 mask = mask << 1
-            out_list.append([int(x) for x in format(n, bin_format)])
+            steps.append([int(x) for x in format(n, bin_format)])
             input = n
             
-        return out_list
+        return steps
